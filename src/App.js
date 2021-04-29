@@ -1,38 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState }  from 'react';
 
+const App = () => {
+  const [count, setCount] = useState(0);
 
-class App extends React.Component{
+  useEffect(() => {
+    if(count < 0) alert('0 이하 입니다');
+  },[count]);
   
-  state = {
-    count: 0
-  };
-
-  add = () => {
-    this.setState(current => ({count: current.count + 1}));
-  }
-
-  minus = () => {
-    this.setState(current => ({count: current.count - 1}));
-  }
-
-  componentDidMount(){
-    console.log('component rendered');
-  }
-  componentDidUpdate(){
-    console.log('i just updating');
-  }
-
-  render(){
-    console.log("i'm randering");
-    return (
-        <div>
-          <h1>This number is: {this.state.count}</h1>
-          <button onClick={this.add}>add</button>
-          <button onClick={this.minus}>minus</button>
-        </div>
-      )
-  }
+  return (
+    <div>
+      <h1>This number is: {count}</h1>
+      <button onClick={setCount(count + 1)}>add</button>
+      <button onClick={setCount(count - 1)}>minus</button>
+    </div>
+  )
 }
 
 export default App;
